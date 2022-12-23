@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 import {
 	Box,
 	Heading,
@@ -11,6 +12,10 @@ import {
 	Spacer,
 	VStack,
 	Grid,
+	ButtonGroup,
+	IconButton,
+	Text,
+	Logo,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
@@ -76,6 +81,42 @@ function Header() {
 	);
 }
 
+function Footer() {
+	return (
+		<Box bg="#805AD5">
+			<Container as="footer" role="contentinfo">
+				<Stack
+					direction={["column", , "row"]}
+					justify="space-between"
+					align="center"
+					wrap="wrap"
+					py="1.2rem"
+				>
+					<Text fontSize="sm" color="subtle">
+						&copy; {new Date().getFullYear()} All rights reserved.
+					</Text>
+					<Stack justify="space-between" direction="row" align="center">
+						<ButtonGroup variant="ghost">
+							<IconButton
+								as="a"
+								href="https://www.linkedin.com/in/eduard-lucaci/"
+								aria-label="LinkedIn"
+								icon={<FaLinkedin fontSize="1.25rem" />}
+							/>
+							<IconButton
+								as="a"
+								href="https://github.com/lucacieduard"
+								aria-label="GitHub"
+								icon={<FaGithub fontSize="1.25rem" />}
+							/>
+						</ButtonGroup>
+					</Stack>
+				</Stack>
+			</Container>
+		</Box>
+	);
+}
+
 export default function Layout({ title, children }) {
 	return (
 		<>
@@ -84,11 +125,12 @@ export default function Layout({ title, children }) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<Grid minH="100vh">
-				<VStack w="full" align="stretch" spacing={8}>
+				<VStack w="full" align="stretch" spacing={7}>
 					<Header />
 					<Box as="main" h="full">
 						{children}
 					</Box>
+					<Footer />
 				</VStack>
 			</Grid>
 		</>
